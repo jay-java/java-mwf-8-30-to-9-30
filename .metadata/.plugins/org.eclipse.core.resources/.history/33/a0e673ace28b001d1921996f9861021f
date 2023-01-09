@@ -1,0 +1,7 @@
+package core;
+
+public class CommandLIne {
+	public static void main(String[] jay) {
+		
+	}
+}

@@ -1,0 +1,17 @@
+package core;
+
+public class CommandLIne {
+	public static void main(String[] args) {
+		float pi = 3.14f;
+		float a = 22f;
+		float b = 7f;
+		float c = a/b;
+		System.out.println(c);
+		float pi2 = ;
+		float r= 7f;
+		System.out.println(2*pi2*r);
+		for(String s:args) {
+			System.out.println(s);
+		}
+	}
+}

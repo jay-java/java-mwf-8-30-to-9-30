@@ -1,0 +1,7 @@
+package core;
+
+public class UserIInput {
+	public static void main(String[] args) {
+		
+	}
+}

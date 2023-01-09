@@ -1,0 +1,11 @@
+package core;
+
+public class CommandLIne {
+	public static void main(String[] args) {
+		float pi = 3.14f;
+		
+		for(String s:args) {
+			System.out.println(s);
+		}
+	}
+}

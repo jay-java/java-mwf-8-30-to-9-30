@@ -1,0 +1,9 @@
+package core;
+class Demo2{
+	
+}
+public class Second {
+	public static void main(String[] args) {
+		
+	}
+}

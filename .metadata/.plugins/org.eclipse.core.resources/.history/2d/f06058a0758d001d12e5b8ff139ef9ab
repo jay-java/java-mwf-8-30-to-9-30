@@ -1,0 +1,8 @@
+package core;
+
+public class StringDemo {
+	public static void main(String[] args) {
+		String name = "TOPSTechnologies";
+		System.out.println(name.length());
+	}
+}
