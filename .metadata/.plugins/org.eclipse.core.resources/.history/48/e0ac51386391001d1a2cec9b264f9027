@@ -1,0 +1,7 @@
+package core;
+
+public class INheritanceDemo {
+	public static void main(String[] args) {
+		
+	}
+}

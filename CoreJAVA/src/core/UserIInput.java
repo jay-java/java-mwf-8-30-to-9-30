@@ -17,8 +17,17 @@ public class UserIInput {
 		Scanner scanner = new Scanner(System.in);
 		i = scanner.nextInt();
 		System.out.println(i);
-		scanner.close();
+//		scanner.close();
 		
+		String name;
+		System.out.println("enter name : ");
+		name = scanner.next();
+		System.out.println(name);
+		
+		char c;
+		System.out.println("enter c = ");
+		c = scanner.next().charAt(0);
+		System.out.println(c);
 	}
 	
 }

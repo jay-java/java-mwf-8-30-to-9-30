@@ -1,0 +1,15 @@
+package core;
+
+class A{
+	public void classA() {
+		System.out.println("hello class A");
+	}
+}
+class B{
+	
+}
+public class INheritanceDemo {
+	public static void main(String[] args) {
+		
+	}
+}

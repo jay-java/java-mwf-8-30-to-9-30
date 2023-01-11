@@ -1,7 +1,0 @@
-package core;
-
-public class Second {
-	public static void main(String[] args) {
-		
-	}
-}
