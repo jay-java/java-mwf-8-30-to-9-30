@@ -1,0 +1,19 @@
+package core;
+
+interface inter1{
+	public void interface1();
+}
+interface inter2 extends inter1{
+	public void interface2();
+}
+interface inter3{
+	public void interface3();
+}
+class interCall implements inter2,inter3{
+	
+}
+public class InterfaceDemo {
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,24 @@
+package core;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ExceptionDemo {
+	public static void main(String[] args) {
+		try {
+			int i,j,k;
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("enter i = ");
+			i = scanner.nextInt();
+			System.out.println("enter j = ");
+			j = scanner.nextInt();
+			k = i/j;
+			System.out.println(k);
+		} catch (ArithmeticException e) {
+			System.out.println("number cannot divide by zero");
+		}
+		catch (InputMismatchException e) {
+			System.out.println("number cannot divide by string ");
+		}
+	}
+}

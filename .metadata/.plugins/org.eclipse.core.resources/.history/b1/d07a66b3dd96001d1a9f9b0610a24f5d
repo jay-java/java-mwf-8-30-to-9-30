@@ -1,0 +1,16 @@
+package core;
+class Mobile{
+	public void price() {
+		System.out.println("mobile : 100000");
+	}
+}
+class Tablet extends Mobile{
+	public void price() {
+		System.out.println("tablet : 40000");
+	}
+}
+public class FinalKeyword {
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,28 @@
+package core;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+class Student2 implements Serializable{
+	int id;
+	String name;
+	double per;
+	public Student2(int id, String name, double per) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.per = per;
+	}
+}
+public class SerializationDemo {
+	public static void main(String[] args) throws IOException {
+		FileOutputStream fos = new FileOutputStream("serialize.txt");
+
+		Student2 student2 = new Student2(1, "java", 99.4);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(student2);
+	}
+}

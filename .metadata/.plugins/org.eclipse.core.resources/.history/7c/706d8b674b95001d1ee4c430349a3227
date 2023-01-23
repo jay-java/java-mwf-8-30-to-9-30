@@ -1,0 +1,10 @@
+package core;
+
+class RBI{
+	
+}
+public class AbstractionClass {
+	public static void main(String[] args) {
+		
+	}
+}

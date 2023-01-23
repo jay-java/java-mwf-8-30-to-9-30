@@ -1,0 +1,16 @@
+package core;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+class Student2{
+	int id;
+	String name;
+	double per;
+	
+}
+public class SerializationDemo {
+	public static void main(String[] args) throws FileNotFoundException {
+		FileOutputStream fos = new FileOutputStream("serialize.txt");
+	}
+}

@@ -1,0 +1,20 @@
+package core;
+
+abstract class RBI{
+	abstract public void interest();
+	abstract public void homeloan();
+}
+class SBI extends RBI{
+	
+}
+class PNB extends RBI{
+	
+}
+class JAVA extends RBI{
+	
+}
+public class AbstractionClass {
+	public static void main(String[] args) {
+		
+	}
+}

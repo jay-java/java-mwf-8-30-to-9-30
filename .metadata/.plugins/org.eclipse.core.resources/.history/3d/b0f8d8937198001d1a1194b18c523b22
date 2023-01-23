@@ -1,0 +1,14 @@
+package core;
+
+public class aaaaa {
+	public static void main(String[] args) {
+////		int j=10;
+////		System.out.println(j);
+//		Integer j = new Integer(10);
+////		Character
+////		Boolean
+////		Double
+//		System.out.println(j);
+		
+	}
+}

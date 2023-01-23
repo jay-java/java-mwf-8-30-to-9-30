@@ -1,0 +1,10 @@
+package core;
+class Student{
+	int id;
+	String name;
+}
+public class EncapsulationDemo {
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,19 @@
+package core;
+
+class RBI{
+	
+}
+class SBI extends RBI{
+	
+}
+class PNB{
+	
+}
+class JAVA{
+	
+}
+public class AbstractionClass {
+	public static void main(String[] args) {
+		
+	}
+}

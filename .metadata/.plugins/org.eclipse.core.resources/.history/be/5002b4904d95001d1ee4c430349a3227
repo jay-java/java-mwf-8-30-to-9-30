@@ -1,0 +1,9 @@
+package core;
+class Student{
+	
+}
+public class EncapsulationDemo {
+	public static void main(String[] args) {
+		
+	}
+}

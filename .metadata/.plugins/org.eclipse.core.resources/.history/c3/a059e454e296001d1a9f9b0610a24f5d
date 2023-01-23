@@ -1,0 +1,15 @@
+package core;
+
+import java.util.Scanner;
+
+public class ExceptionDemo {
+	public static void main(String[] args) {
+		int i,j,k;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("enter i = ");
+		i = scanner.nextInt();
+		System.out.println("enter j = ");
+		j = scanner.nextInt();
+		k = i/j;
+	}
+}
