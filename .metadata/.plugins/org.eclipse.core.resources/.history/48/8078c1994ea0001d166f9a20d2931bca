@@ -1,0 +1,14 @@
+package core;
+
+import javax.swing.JFrame;
+
+public class SwingDemo {
+	SwingDemo(){
+		JFrame frame = new JFrame("MyApp");
+		frame.setVisible(true);
+		frame.setSize(700, 500);
+	}
+	public static void main(String[] args) {
+		new SwingDemo();
+	}
+}

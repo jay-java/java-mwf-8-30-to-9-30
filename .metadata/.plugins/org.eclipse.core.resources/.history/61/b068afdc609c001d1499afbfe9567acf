@@ -1,0 +1,11 @@
+package core;
+class Employee{
+	int id;
+	String name;
+	double salary;
+}
+public class LIstPractical {
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,10 @@
+package core;
+
+import java.util.ArrayList;
+
+public class ArrayLIstDemo {
+	public static void main(String[] args) {
+		ArrayList list = new  ArrayList();
+		
+	}
+}

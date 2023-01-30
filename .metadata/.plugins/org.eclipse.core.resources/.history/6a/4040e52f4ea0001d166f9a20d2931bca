@@ -1,0 +1,13 @@
+package core;
+
+import javax.swing.JFrame;
+
+public class SwingDemo {
+	SwingDemo(){
+		JFrame frame = new JFrame("MyApp");
+		
+	}
+	public static void main(String[] args) {
+		
+	}
+}

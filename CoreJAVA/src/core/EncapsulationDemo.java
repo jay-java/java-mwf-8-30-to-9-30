@@ -10,8 +10,9 @@ class Student{
 	}
 	@Override
 	public String toString() {
-		return "["+"id : "+id+" name : "+name+" per : "+per+"]";
+		return "Student [id=" + id + ", name=" + name + ", per=" + per + "]";
 	}
+
 }
 public class EncapsulationDemo {
 	public static void main(String[] args) {
