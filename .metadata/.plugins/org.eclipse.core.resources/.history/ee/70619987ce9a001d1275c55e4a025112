@@ -1,7 +1,0 @@
-package core;
-
-public class FileInputOutputStream {
-	public static void main(String[] args) {
-		String s = "this is file handling by file input output stream";
-	}
-}

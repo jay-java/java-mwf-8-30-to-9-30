@@ -2,13 +2,20 @@ package core;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.function.ObjLongConsumer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class SwingDemo implements ActionListener{
+import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Update;
+
+public class SwingDemo implements ActionListener {
 	JLabel l1, l2, l3, l4, l5;
 	JTextField t1, t2, t3, t4, t5;
 	JButton b1, b2, b3, b4;
@@ -50,7 +57,7 @@ public class SwingDemo implements ActionListener{
 		t5 = new JTextField();
 		t5.setBounds(200, 220, 120, 20);
 		frame.add(t5);
-		
+
 		b1 = new JButton("INSERT");
 		b1.setBounds(100, 300, 120, 20);
 		frame.add(b1);
@@ -63,30 +70,65 @@ public class SwingDemo implements ActionListener{
 		b4 = new JButton("DELETE");
 		b4.setBounds(250, 330, 120, 20);
 		frame.add(b4);
-		
+
 		b1.addActionListener(this);
 		b2.addActionListener(this);
 		b3.addActionListener(this);
 		b4.addActionListener(this);
-		
 	}
 
 	public static void main(String[] args) {
 		new SwingDemo();
 	}
+	
+	
+	public static Connection createConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/swing", "root", "");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return connection;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==b1) {
+		if (e.getSource() == b1) {
 			System.out.println("insert button clicked");
-		}
-		else if(e.getSource()==b2) {
+			int id = Integer.parseInt(t1.getText());
+			String nameString = t2.getText();
+			long contact = Long.parseLong(t3.getText());
+			String emailString = t4.getText();
+			String addressString = t5.getText();
+			System.out.println(id+nameString+contact+emailString+addressString);
+			try {
+				Connection connection = SwingDemo.createConnection();
+				String sql= "insert into data(id,name,contact,email,address) values(?,?,?,?,?)";
+				PreparedStatement pst = connection.prepareStatement(sql);
+				pst.setInt(1, id);
+				pst.setString(2, nameString);
+				pst.setLong(3, contact);
+				pst.setString(4, emailString);
+				pst.setString(5, addressString);
+//				DML->insert/Update/Delete ===> executeUpdate();
+//				DQL->select ==> executeQuery();
+				pst.executeUpdate();
+				System.out.println("data stored successfully");
+				t1.setText("");
+				t2.setText("");
+				t3.setText("");
+				t4.setText("");
+				t5.setText("");
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} else if (e.getSource() == b2) {
 			System.out.println("search button clicked");
-		}
-		else if(e.getSource()==b3) {
+		} else if (e.getSource() == b3) {
 			System.out.println("update button clicked");
-		}
-		else if(e.getSource()==b4) {
+		} else if (e.getSource() == b4) {
 			System.out.println("delete button clicked");
 		}
 	}
