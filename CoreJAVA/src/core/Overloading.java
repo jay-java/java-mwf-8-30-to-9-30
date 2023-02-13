@@ -12,5 +12,7 @@ public class Overloading {
 		Laptop laptop  = new Laptop();
 		laptop.data(1);
 		laptop.data("java");
+		Laptop laptop1  = new Laptop();
+		Laptop laptop2  = new Laptop();
 	}
 }

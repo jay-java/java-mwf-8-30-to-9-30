@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.function.ObjLongConsumer;
 
 import javax.swing.JButton;
@@ -12,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import com.mysql.cj.protocol.PacketSentTimeHolder;
+import com.mysql.cj.protocol.a.result.ResultsetRowsStatic;
 import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
 import com.mysql.cj.x.protobuf.MysqlxCrud.Update;
 
@@ -126,10 +129,76 @@ public class SwingDemo implements ActionListener {
 			}
 		} else if (e.getSource() == b2) {
 			System.out.println("search button clicked");
+			int id  = Integer.parseInt(t1.getText());
+			try {
+				Connection connection = SwingDemo.createConnection();
+				String sql = "select * from data where id=?";
+				PreparedStatement pst = connection.prepareStatement(sql);
+				pst.setInt(1, id);
+				ResultSet rs = pst.executeQuery();
+				if(rs.next()) {
+					t1.setText(String.valueOf(rs.getInt("id")));
+					t2.setText(rs.getString("name"));
+					t3.setText(String.valueOf(rs.getLong("contact")));
+					t4.setText(rs.getString("email"));
+					t5.setText(rs.getString("address"));
+				}
+				else {
+					System.out.println("data not found");
+					t1.setText("");
+					t2.setText("");
+					t3.setText("");
+					t4.setText("");
+					t5.setText("");
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		} else if (e.getSource() == b3) {
 			System.out.println("update button clicked");
+			int id = Integer.parseInt(t1.getText());
+			String nameString = t2.getText();
+			long contact = Long.parseLong(t3.getText());
+			String emailString = t4.getText();
+			String addressString = t5.getText();
+			try {
+				Connection connection = SwingDemo.createConnection();
+				String sql = "update data set name=?,contact=?,email=?,address=? where id=?";
+				PreparedStatement pst = connection.prepareStatement(sql);
+				pst.setString(1, nameString);
+				pst.setLong(2, contact);
+				pst.setString(3, emailString);
+				pst.setString(4, addressString);
+				pst.setInt(5, id);
+				pst.executeUpdate();
+				System.out.println("data updated");
+				t1.setText("");
+				t2.setText("");
+				t3.setText("");
+				t4.setText("");
+				t5.setText("");
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			
 		} else if (e.getSource() == b4) {
 			System.out.println("delete button clicked");
+			int id = Integer.parseInt(t1.getText());
+			try {
+				Connection connection = SwingDemo.createConnection();
+				String sql = "delete from data where id=?";
+				PreparedStatement pst = connection.prepareStatement(sql);
+				pst.setInt(1, id);
+				pst.executeUpdate();
+				System.out.println("data deleted");
+				t1.setText("");
+				t2.setText("");
+				t3.setText("");
+				t4.setText("");
+				t5.setText("");
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 	}
 }
