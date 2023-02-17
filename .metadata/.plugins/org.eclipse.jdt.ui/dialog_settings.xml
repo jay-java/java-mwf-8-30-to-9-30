@@ -105,4 +105,7 @@
 	<section name="NewPackageWizardPage">
 		<item key="create_package_info_java" value="false"/>
 	</section>
+	<section name="ClasspathContainerSelectionPage">
+		<item key="index" value="3"/>
+	</section>
 </section>
