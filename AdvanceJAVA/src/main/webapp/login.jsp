@@ -23,6 +23,12 @@ if(msg1!=null){
 	out.print(msg1);
 }
 %>
+<%
+String inc= (String)request.getAttribute("incoorect");
+if(inc!=null){
+	out.print(inc);
+}
+%>
 
 <form action="UserController" method="post">
 		<table>
