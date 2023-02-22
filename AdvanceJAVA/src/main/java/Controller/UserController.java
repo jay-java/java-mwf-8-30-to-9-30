@@ -54,12 +54,11 @@ public class UserController extends HttpServlet {
 			System.out.println(flag);
 			if (flag == true) {
 				User user2 = UserDao.userLogin(user);
-				if(user2 != null) {
+				if (user2 != null) {
 					HttpSession session = request.getSession();
 					session.setAttribute("data", user2);
 					request.getRequestDispatcher("home.jsp").forward(request, response);
-				}
-				else {
+				} else {
 					request.setAttribute("incoorect", "password is incorrect");
 					request.getRequestDispatcher("login.jsp").forward(request, response);
 				}
@@ -68,14 +67,12 @@ public class UserController extends HttpServlet {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 				;
 			}
-		}
-		else if(action.equalsIgnoreCase("edit")) {
+		} else if (action.equalsIgnoreCase("edit")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			User user = UserDao.getUserById(id);
 			request.setAttribute("data", user);
 			request.getRequestDispatcher("update.jsp").forward(request, response);
-		}
-		else if(action.equalsIgnoreCase("update")) {
+		} else if (action.equalsIgnoreCase("update")) {
 			User user = new User();
 			user.setId(Integer.parseInt(request.getParameter("id")));
 			user.setName(request.getParameter("name"));
@@ -85,12 +82,10 @@ public class UserController extends HttpServlet {
 			user.setPasswordString(request.getParameter("password"));
 			UserDao.updateUser(user);
 			response.sendRedirect("home.jsp");
-		}
-		else if(action.equalsIgnoreCase("delete")) {
+		} else if (action.equalsIgnoreCase("delete")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			UserDao.deleteUser(id);
 			response.sendRedirect("home.jsp");
 		}
 	}
-
 }

@@ -1,6 +1,6 @@
+<%@page import="model.User"%>
 <%@page import="dao.UserDao"%>
 <%@page import="java.util.List"%>
-<%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
 	}
 	%>
 	<%-- <%=expression % --%>
-	<%-- Welcome, Name :
+ 	 Welcome, Name :
 	<%=u.getName()%>
 	Contact :
 	<%=u.getContact()%>
@@ -37,7 +37,6 @@
 	<%=u.getEmail()%>
 	Password :
 	<%=u.getPasswordString()%>
- --%>
 
 
 
