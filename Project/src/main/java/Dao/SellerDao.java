@@ -96,4 +96,33 @@ public class SellerDao {
 			e.printStackTrace();
 		}
 	}
+	public static boolean checkEmail(String email) {
+		boolean flag = false;
+		try {
+			Connection connection = DBConnection.createConnection();
+			String sqlString="select * from seller where email=?";
+			PreparedStatement pst = connection.prepareStatement(sqlString);
+			pst.setString(1, email);
+			ResultSet rs  = pst.executeQuery();
+			if(rs.next()) {
+				flag = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	public static void changeNewPasswrod(String email,String np) {
+		try {
+			Connection connection = DBConnection.createConnection();
+			String sqlString="update seller set password=? where email=?";
+			PreparedStatement pst = connection.prepareStatement(sqlString);
+			pst.setString(1, np);
+			pst.setString(2, email);
+			pst.executeUpdate();
+			System.out.println("password changed");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
