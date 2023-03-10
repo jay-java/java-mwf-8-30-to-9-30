@@ -84,8 +84,8 @@ else{
 						</label> <a href="#">Products <span class="fa fa-angle-down"
 								aria-hidden="true"></span></a> <input type="checkbox" id="drop-2" />
 							<ul>
-								<li><a href="seller-registration.jsp">Upload Product</a></li>
-								<li><a href="customer-registration.jsp">Manage Product</a></li>
+								<li><a href="seller-upload-product.jsp">Upload Product</a></li>
+								<li><a href="seller-manage-product.jsp">Manage Product</a></li>
 							</ul>
 						</li>
 						<li>
