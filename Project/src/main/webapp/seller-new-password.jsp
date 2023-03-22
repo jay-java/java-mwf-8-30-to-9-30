@@ -117,7 +117,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<%String msg = (String)request.getAttribute("msg"); %>
 				<%if(msg!=null){ %>
 					<%out.print(msg); %>
-				<%} %>
+				<%} %> 
 			</h5>
 			<div class="row contact-main-info mt-5">
 				<div class="col-md-12 contact-right-content">

@@ -147,7 +147,7 @@ public class SellerController extends HttpServlet {
 			else {
 				request.setAttribute("msg", "np and cnp not matched");
 				request.setAttribute("email", email);
-				request.getRequestDispatcher("seller-verify-otp.jsp").forward(request, response);
+				request.getRequestDispatcher("seller-new-password.jsp").forward(request, response);
 			}
 		}
 	}
