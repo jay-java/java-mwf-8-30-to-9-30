@@ -1,3 +1,5 @@
+<%@page import="Dao.WishListDao"%>
+<%@page import="Model.WishList"%>
 <%@page import="Dao.ProductDao"%>
 <%@page import="Model.Product"%>
 <%@page import="java.util.List"%>
@@ -88,7 +90,9 @@ else{
 								aria-hidden="true"></span></a> <input type="checkbox" id="drop-2" />
 							<ul>
 								<li><a href="seller-registration.jsp">Cart</a></li>
-								<li><a href="customer-registration.jsp">WishList</a></li>
+								
+								<%List<WishList> list1  = WishListDao.getWishListByCusId(c.getId()); %>
+								<li><a href="customer-registration.jsp">WishList (<%=list1.size() %>)</a></li>
 							</ul>
 						</li>
 						<li>

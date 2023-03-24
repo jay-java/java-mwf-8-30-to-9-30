@@ -74,7 +74,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								aria-hidden="true"></span>ootie</a>
 						</h1>
 					</div>
-
 					<label for="drop" class="toggle">Menu</label> <input
 						type="checkbox" id="drop" />
 					<ul class="menu mt-2">
@@ -125,25 +124,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	<div class="left-ads-display col-lg-8">
 		<div class="row">
-		<%int id = Integer.parseInt(request.getParameter("id")); %>
-		<%Product p = ProductDao.getProductByPid(id); %>
+			<%
+			int id = Integer.parseInt(request.getParameter("id"));
+			%>
+			<%
+			Product p = ProductDao.getProductByPid(id);
+			%>
 			<div class="desc1-left col-md-6">
-				<img src="image/<%=p.getImage() %>" class="img-fluid" alt="">
+				<img src="image/<%=p.getImage()%>" class="img-fluid" alt="">
 			</div>
 			<div class="desc1-right col-md-6 pl-lg-4">
-				<h3><%=p.getPname() %></h3>
+				<h3><%=p.getPname()%></h3>
 				<h5>
-					Rs. <%=p.getPprice() %>
+					Rs.
+					<%=p.getPprice()%>
 				</h5>
 				<div class="available mt-3">
 					<form action="#" method="post" class="w3layouts-newsletter">
-						
+
 						<button class="btn1">Add to Cart</button>
 
 					</form>
-										<form action="#" method="post" class="w3layouts-newsletter">
-						
-						<button class="btn1">Add to WishList</button>
+					<form action="WishListController" method="post" class="w3layouts-newsletter">
+						<input type="hidden" name="pid" value="<%=p.getPid()%>">
+						<input type="hidden" name="cusid" value="<%=c.getId()%>">
+						<button name="action" value="addtowishlist" class="btn1">Add to WishList</button>
 
 					</form>
 					<span><a href="#">login to save in wishlist </a></span>
