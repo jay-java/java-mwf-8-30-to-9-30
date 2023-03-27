@@ -92,7 +92,7 @@ else{
 								<li><a href="seller-registration.jsp">Cart</a></li>
 								
 								<%List<WishList> list1  = WishListDao.getWishListByCusId(c.getId()); %>
-								<li><a href="customer-registration.jsp">WishList (<%=list1.size() %>)</a></li>
+								<li><a href="customer-wishlist.jsp">WishList (<%=list1.size() %>)</a></li>
 							</ul>
 						</li>
 						<li>

@@ -1,4 +1,5 @@
 <%@page import="Dao.WishListDao"%>
+<%@page import="Model.WishList"%>
 <%@page import="Dao.ProductDao"%>
 <%@page import="Model.Product"%>
 <%@page import="java.util.List"%>
@@ -54,14 +55,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body>
-	<%
-	Customer c = null;
-	if (session.getAttribute("data") != null) {
-		c = (Customer) session.getAttribute("data");
-	} else {
-		response.sendRedirect("seller-login.jsp");
-	}
-	%>
+<%
+Customer c = null;
+if(session.getAttribute("data")!=null){
+	c = (Customer)session.getAttribute("data");
+}
+else{
+	response.sendRedirect("seller-login.jsp");
+}
+
+%>
 	<!-- mian-content -->
 	<div class="main-banner" id="home">
 		<!-- header -->
@@ -75,6 +78,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								aria-hidden="true"></span>ootie</a>
 						</h1>
 					</div>
+
 					<label for="drop" class="toggle">Menu</label> <input
 						type="checkbox" id="drop" />
 					<ul class="menu mt-2">
@@ -86,18 +90,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								aria-hidden="true"></span></a> <input type="checkbox" id="drop-2" />
 							<ul>
 								<li><a href="seller-registration.jsp">Cart</a></li>
-								<li><a href="customer-registration.jsp">WishList</a></li>
+								
+								<%List<WishList> list1  = WishListDao.getWishListByCusId(c.getId()); %>
+								<li><a href="customer-wishlist.jsp">WishList (<%=list1.size() %>)</a></li>
 							</ul>
 						</li>
 						<li>
 							<!-- First Tier Drop Down --> <label for="drop-2" class="toggle">Drop
 								Down <span class="fa fa-angle-down" aria-hidden="true"></span>
-						</label> <a href="#"><%=c.getName()%> <span class="fa fa-angle-down"
+						</label> <a href="#"><%=c.getName() %> <span class="fa fa-angle-down"
 								aria-hidden="true"></span></a> <input type="checkbox" id="drop-2" />
 							<ul>
 								<li><a href="customer-profile.jsp">Profile</a></li>
-								<li><a href="customer-change-password.jsp">Change
-										Password</a></li>
+								<li><a href="customer-change-password.jsp">Change Password</a></li>
 								<li><a href="customer-logout.jsp">Logout</a></li>
 							</ul>
 						</li>
@@ -121,71 +126,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!--//main-content-->
 
+	<!--/ab -->
+	<section class="about py-5">
+		<div class="container pb-lg-3">
+			<h3 class="tittle text-center">New Arrivals</h3>
+			<div class="row">
+			<%List<WishList> list = WishListDao.getWishListByCusId(c.getId()); %>
+			<%for(WishList w:list){ %>
+			<%Product p = ProductDao.getProductByPid(w.getPid()); %>
+				<div class="col-md-4 product-men">
+					<div class="product-shoe-info shoe text-center">
+						<div class="men-thumb-item">
+							<img src="image/<%=p.getImage() %>" class="img-fluid" alt=""> <span
+								class="product-new-top">New</span>
+						</div>
+						<div class="item-info-product">
+							<h4>
+								<a href="single-product.jsp?id=<%=p.getPid()%>"><%=p.getPname() %> </a>
+							</h4>
 
-
-	<div class="left-ads-display col-lg-8">
-		<div class="row">
-			<%
-			int id = Integer.parseInt(request.getParameter("id"));
-			%>
-			<%
-			Product p = ProductDao.getProductByPid(id);
-			%>
-			<div class="desc1-left col-md-6">
-				<img src="image/<%=p.getImage()%>" class="img-fluid" alt="">
-			</div>
-			<div class="desc1-right col-md-6 pl-lg-4">
-				<h3><%=p.getPname()%></h3>
-				<h5>
-					Rs.
-					<%=p.getPprice()%>
-				</h5>
-				<div class="available mt-3">
-					<form action="CartController" method="post" class="w3layouts-newsletter">
-						<input type="hidden" name="pid" value="<%=p.getPid()%>">
-						<input type="hidden" name="cusid" value="<%=c.getId()%>">
-						<button class="btn1" name="action" value="addtocart">Add to Cart</button>
-					</form>
-					<%boolean flag = WishListDao.cheProductExist(c.getId(), p.getPid()); %>
-					<%if(flag == false){ %>
-					<form action="WishListController" method="post" class="w3layouts-newsletter">
-						<input type="hidden" name="pid" value="<%=p.getPid()%>">
-						<input type="hidden" name="cusid" value="<%=c.getId()%>">
-						<button name="action" value="addtowishlist" class="btn1">Add to WishList</button>
-
-					</form>
-					<%} %>
-					<span><a href="#">login to save in wishlist </a></span>
-					<p>Lorem Ipsum has been the industry's standard since the
-						1500s. Praesent ullamcorper dui turpis..</p>
-				</div>
-				<div class="share-desc">
-					<div class="share">
-						<h4>Share Product :</h4>
-						<ul class="w3layouts_social_list list-unstyled">
-							<li><a href="#" class="w3pvt_facebook"> <span
-									class="fa fa-facebook-f"></span>
-							</a></li>
-							<li class="mx-2"><a href="#" class="w3pvt_twitter"> <span
-									class="fa fa-twitter"></span>
-							</a></li>
-							<li><a href="#" class="w3pvt_dribble"> <span
-									class="fa fa-dribbble"></span>
-							</a></li>
-							<li class="ml-2"><a href="#" class="w3pvt_google"> <span
-									class="fa fa-google-plus"></span>
-							</a></li>
-						</ul>
+							<div class="product_price">
+								<div class="grid-price">
+									<span class="money"><%=p.getPprice() %></span>
+								</div>
+							</div>
+							<div class="product_price">
+								<div class="grid-price">
+									<a href="removefromwishlist.jsp?wid=<%=w.getWid()%>">Remove From WishList</a>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="clearfix"></div>
 				</div>
+			<%} %>
 			</div>
+
 		</div>
+	</section>
 
-	</div>
-
-
-
+	
 	<!-- footer -->
 	<footer>
 		<div class="container">
