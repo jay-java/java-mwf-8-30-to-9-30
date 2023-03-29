@@ -141,7 +141,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<%=p.getPprice()%>
 				</h5>
 				<div class="available mt-3">
-					<form action="CartController" method="post" class="w3layouts-newsletter">
+					<form action="CartController" method="get" class="w3layouts-newsletter">
 						<input type="hidden" name="pid" value="<%=p.getPid()%>">
 						<input type="hidden" name="cusid" value="<%=c.getId()%>">
 						<button class="btn1" name="action" value="addtocart">Add to Cart</button>

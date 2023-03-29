@@ -31,14 +31,6 @@ public class CartController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if(action.equalsIgnoreCase("addtocart")) {
 			Cart c = new Cart();
@@ -50,9 +42,25 @@ public class CartController extends HttpServlet {
 			c.setPprice(p.getPprice());
 			c.setPqty(1);
 			c.setPayment_status("pending");
+			c.setTotal(p.getPprice());
 			CartDao.insertCat(c);
 			response.sendRedirect("customer-home.jsp");
 		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int cid = Integer.parseInt(request.getParameter("cid"));
+		int pqty = Integer.parseInt(request.getParameter("pqty"));
+		System.out.println(cid+" : "+pqty);
+		Cart c = CartDao.getCartByCid(cid);
+		Product p = ProductDao.getProductByPid(c.getPid());
+		int total = pqty*c.getPprice();
+		Cart c1 = new Cart();
+		c1.setCid(cid);
+		c1.setPqty(pqty);
+		c1.setTotal(total);
+		CartDao.updateCart(c1);
+		response.sendRedirect("customer-cart.jsp");
 	}
 
 }

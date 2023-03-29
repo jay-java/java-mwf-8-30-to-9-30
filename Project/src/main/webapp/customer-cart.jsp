@@ -1,3 +1,5 @@
+<%@page import="Dao.CartDao"%>
+<%@page import="Model.Cart"%>
 <%@page import="Dao.WishListDao"%>
 <%@page import="Model.WishList"%>
 <%@page import="Dao.ProductDao"%>
@@ -55,16 +57,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body>
-<%
-Customer c = null;
-if(session.getAttribute("data")!=null){
-	c = (Customer)session.getAttribute("data");
-}
-else{
-	response.sendRedirect("seller-login.jsp");
-}
-
-%>
+	<%
+	Customer c = null;
+	if (session.getAttribute("data") != null) {
+		c = (Customer) session.getAttribute("data");
+	} else {
+		response.sendRedirect("seller-login.jsp");
+	}
+	%>
 	<!-- mian-content -->
 	<div class="main-banner" id="home">
 		<!-- header -->
@@ -90,19 +90,23 @@ else{
 								aria-hidden="true"></span></a> <input type="checkbox" id="drop-2" />
 							<ul>
 								<li><a href="customer-cart.jsp">Cart</a></li>
-								
-								<%List<WishList> list1  = WishListDao.getWishListByCusId(c.getId()); %>
-								<li><a href="customer-wishlist.jsp">WishList (<%=list1.size() %>)</a></li>
+
+								<%
+								List<WishList> list1 = WishListDao.getWishListByCusId(c.getId());
+								%>
+								<li><a href="customer-wishlist.jsp">WishList (<%=list1.size()%>)
+								</a></li>
 							</ul>
 						</li>
 						<li>
 							<!-- First Tier Drop Down --> <label for="drop-2" class="toggle">Drop
 								Down <span class="fa fa-angle-down" aria-hidden="true"></span>
-						</label> <a href="#"><%=c.getName() %> <span class="fa fa-angle-down"
+						</label> <a href="#"><%=c.getName()%> <span class="fa fa-angle-down"
 								aria-hidden="true"></span></a> <input type="checkbox" id="drop-2" />
 							<ul>
 								<li><a href="customer-profile.jsp">Profile</a></li>
-								<li><a href="customer-change-password.jsp">Change Password</a></li>
+								<li><a href="customer-change-password.jsp">Change
+										Password</a></li>
 								<li><a href="customer-logout.jsp">Logout</a></li>
 							</ul>
 						</li>
@@ -112,53 +116,42 @@ else{
 			</div>
 		</header>
 		<!-- //header -->
-		<!--/banner-->
-		<div class="banner-info">
-			<p>Trending of the week</p>
-			<h3 class="mb-4">Casual Shoes for Men</h3>
-			<div class="ban-buttons">
-				<a href="shop-single.html" class="btn">Shop Now</a> <a
-					href="single.html" class="btn active">Read More</a>
-			</div>
-		</div>
-		<!--// banner-inner -->
-
 	</div>
-	<!--//main-content-->
 
-	<!--/ab -->
-	<section class="about py-5">
-		<div class="container pb-lg-3">
-			<h3 class="tittle text-center">New Arrivals</h3>
-			<div class="row">
-			<%List<Product> list = ProductDao.getAllProduct(); %>
-			<%for(Product p:list){ %>
-				<div class="col-md-4 product-men">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="image/<%=p.getImage() %>" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="single-product.jsp?id=<%=p.getPid()%>"><%=p.getPname() %> </a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price">
-									<span class="money"><%=p.getPprice() %></span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Product Name</th>
+				<th scope="col">Product Price</th>
+				<th scope="col">Product Quantity</th>
+				<th scope="col">Total</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%List<Cart> list = CartDao.getCartByCusId(c.getId()); %>
+		<%int net_price = 0; %>
+		<%for(Cart c1:list){ %>
+				<%net_price = net_price + c1.getTotal(); %>
+			<tr>
+				<th scope="row"><%=c1.getPname() %></th>
+				<td><%=c1.getPprice() %></td>
+				<td>
+					<form action="CartController" method="post">
+						<input type="hidden" name="cid" value="<%=c1.getCid()%>">
+						<input type="number" min="1" max="10" value="<%=c1.getPqty()%>" name="pqty" onchange="this.form.submit();">
+					</form>
+				</td>
+				<td><%=c1.getTotal() %></td>
+			</tr>
 			<%} %>
-			</div>
-
-		</div>
-	</section>
-
+			<h2>Net Price : <%=net_price %></h2>
+		</tbody>
+	</table>
 	
+	</div>
+
+
 	<!-- footer -->
 	<footer>
 		<div class="container">

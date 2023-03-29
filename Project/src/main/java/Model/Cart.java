@@ -1,7 +1,7 @@
 package Model;
 
 public class Cart {
-	private int cid,pid,cusid,pprice,pqty;
+	private int cid,pid,cusid,pprice,pqty,total;
 	private String pname,payment_status;
 	
 	public int getPqty() {
@@ -46,10 +46,18 @@ public class Cart {
 	public void setPayment_status(String payment_status) {
 		this.payment_status = payment_status;
 	}
+	
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	
 	@Override
 	public String toString() {
 		return "Cart [cid=" + cid + ", pid=" + pid + ", cusid=" + cusid + ", pprice=" + pprice + ", pqty=" + pqty
-				+ ", pname=" + pname + ", payment_status=" + payment_status + "]";
+				+ ", total=" + total + ", pname=" + pname + ", payment_status=" + payment_status + "]";
 	}
 
 }
