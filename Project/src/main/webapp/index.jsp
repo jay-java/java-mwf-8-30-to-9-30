@@ -28,7 +28,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	}
 </script>
 <!-- //Meta tag Keywords -->
-
 <!-- Custom-Files -->
 <link rel="stylesheet" href="css/bootstrap.css">
 <!-- Bootstrap-Core-CSS -->
