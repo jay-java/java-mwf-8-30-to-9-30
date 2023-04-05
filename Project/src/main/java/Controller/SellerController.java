@@ -82,6 +82,16 @@ public class SellerController extends HttpServlet {
 			session.setAttribute("data", s);
 			request.getRequestDispatcher("seller-home.jsp").forward(request, response);
 		}
+		else if(action.equalsIgnoreCase("aupdate")) {
+			Seller s = new Seller();
+			s.setId(Integer.parseInt(request.getParameter("id")));
+			s.setName(request.getParameter("name"));
+			s.setContact(Long.parseLong(request.getParameter("contact")));
+			s.setAddress(request.getParameter("address"));
+			s.setEmail(request.getParameter("email"));
+			SellerDao.updateProfile(s);
+			response.sendRedirect("admin-sellers-list.jsp");
+		}
 		else if(action.equalsIgnoreCase("change password")) {
 			Seller s = new Seller();
 			int id = Integer.parseInt(request.getParameter("id"));

@@ -3,6 +3,8 @@ package Dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import Model.Customer;
 import connection.DBConnection;
@@ -46,5 +48,27 @@ public class CustomerDao {
 			e.printStackTrace();
 		}
 		return c1;
+	}
+	public static List<Customer> getAllCustomers(){
+		List<Customer> list = new ArrayList<Customer>();
+		try {
+			Connection conn = DBConnection.createConnection();
+			String sql="select * from customer";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				Customer c1 = new Customer();
+				c1.setId(rs.getInt("id"));
+				c1.setName(rs.getString("name"));
+				c1.setContact(rs.getLong("contact"));
+				c1.setAddress(rs.getString("address"));
+				c1.setEmail(rs.getString("email"));
+				c1.setPasswordString(rs.getString("password"));
+				list.add(c1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

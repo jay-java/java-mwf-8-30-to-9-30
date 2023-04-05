@@ -1,7 +1,5 @@
-<%@page import="Dao.SellerDao"%>
 <%@page import="Model.Seller"%>
-<%@page import="Dao.CustomerDao"%>
-<%@page import="Model.Customer"%>
+<%@page import="Dao.SellerDao"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Modern an Admin Panel Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+<title>Modern an Admin Panel Category Flat Bootstarp Resposive Website Template | Basic_tables :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -24,27 +22,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="admin/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
 <link href="admin/css/style.css" rel='stylesheet' type='text/css' />
-<!-- Graph CSS -->
-<link href="admin/css/lines.css" rel='stylesheet' type='text/css' />
 <link href="admin/css/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
 <script src="admin/js/jquery.min.js"></script>
 <!----webfonts--->
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
 <!---//webfonts--->  
-<!-- Nav CSS -->
-<link href="admin/css/custom.css" rel="stylesheet">
-<!-- Metis Menu Plugin JavaScript -->
-<script src="admin/js/metisMenu.min.js"></script>
-<script src="admin/js/custom.js"></script>
-<!-- Graph JavaScript -->
-<script src="admin/js/d3.v3.js"></script>
-<script src="admin/js/rickshaw.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="admin/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div id="wrapper">
      <!-- Navigation -->
-        <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+      <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -169,58 +159,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- /.navbar-static-side -->
         </nav>
         <div id="page-wrapper">
-        <div class="graphs">
-     	<div class="col_3">
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-thumbs-up icon-rounded"></i>
-                    <div class="stats">
-                    <%List<Customer> clist =CustomerDao.getAllCustomers(); %>
-                      <h5><strong><%out.print(clist.size()); %></strong></h5>
-                      <span>Customers</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-users user1 icon-rounded"></i>
-                    <div class="stats">
-                     <%List<Seller> slist =SellerDao.getAllSellers(); %>
-                      <h5><strong><%out.print(slist.size()); %></strong></h5>
-                      <span>Sellers</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-comment user2 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>1012</strong></h5>
-                      <span>Products</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-dollar dollar1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>$450</strong></h5>
-                      <span>XYZ</span>
-                    </div>
-                </div>
-        	 </div>
-        	<div class="clearfix"> </div>
+        <div class="col-md-12 graphs">
+	   <div class="xs">
+  	 <h3>Basic Tables</h3>
+  	<div class="bs-example4" data-example-id="contextual-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Address</th>
+          <th>Email</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%List<Seller> list = SellerDao.getAllSellers(); %>
+      <%for(Seller s:list){ %>
+        <tr class="active">
+          <th scope="row"><%=s.getId() %></th>
+          <td><%=s.getName() %></td>
+          <td><%=s.getContact() %></td>
+          <td><%=s.getAddress() %></td>
+          <td><%=s.getEmail() %></td>
+          <td><a href="admin-seller-edit.jsp?id=<%=s.getId()%>">Edit</a></td>
+          <td><a href="admin-seller-delete.jsp?id=<%=s.getId()%>">Delete</a></td>
+        </tr>
+       <%} %>
+      </tbody>
+    </table>
+   </div>
+	
+  </div>
+  <div class="copy_layout">
+      <p>Copyright © 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+  </div>
+   </div>
       </div>
-   
-		<div class="copy">
-            <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-	    </div>
-		</div>
-       </div>
       <!-- /#page-wrapper -->
    </div>
     <!-- /#wrapper -->
-    <!-- Bootstrap Core JavaScript -->
-    <script src="admin/js/bootstrap.min.js"></script>
+<!-- Nav CSS -->
+<link href="admin/css/custom.css" rel="stylesheet">
+<!-- Metis Menu Plugin JavaScript -->
+<script src="admin/js/metisMenu.min.js"></script>
+<script src="admin/js/custom.js"></script>
 </body>
 </html>
