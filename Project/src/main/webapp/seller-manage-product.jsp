@@ -53,23 +53,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body>
-<%
-Seller s = null;
-if(session.getAttribute("data")!=null){
-	s = (Seller)session.getAttribute("data");
-}
-else{
-	response.sendRedirect("seller-login.jsp");
-}
-
-%>
+	<%
+	Seller s = null;
+	if (session.getAttribute("data") != null) {
+		s = (Seller) session.getAttribute("data");
+	} else {
+		response.sendRedirect("seller-login.jsp");
+	}
+	%>
 	<!-- mian-content -->
 	<div class="main-banner" id="home">
 		<!-- header -->
 		<header class="header">
 			<div class="container-fluid px-lg-5">
 				<!-- nav -->
-			<nav class="py-4">
+				<nav class="py-4">
 					<div id="logo">
 						<h1>
 							<a href="index.html"><span class="fa fa-bold"
@@ -94,11 +92,12 @@ else{
 						<li>
 							<!-- First Tier Drop Down --> <label for="drop-2" class="toggle">Drop
 								Down <span class="fa fa-angle-down" aria-hidden="true"></span>
-						</label> <a href="#"><%=s.getName() %> <span class="fa fa-angle-down"
+						</label> <a href="#"><%=s.getName()%> <span class="fa fa-angle-down"
 								aria-hidden="true"></span></a> <input type="checkbox" id="drop-2" />
 							<ul>
 								<li><a href="seller-profile.jsp">Profile</a></li>
-								<li><a href="seller-change-password.jsp">Change Password</a></li>
+								<li><a href="seller-change-password.jsp">Change
+										Password</a></li>
 								<li><a href="seller-logout.jsp">Logout</a></li>
 							</ul>
 						</li>
@@ -180,29 +179,28 @@ else{
 		<div class="container pb-lg-3">
 			<h3 class="tittle text-center">New Arrivals</h3>
 			<div class="row">
-			<%List<Product> list = ProductDao.getProductBySid(s.getId()); %>
-			<%for(Product p:list){ %>
-				<div class="col-md-4 product-men">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="image/<%=p.getImage() %>" height="100px" width="100px" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="shop-single.html"><%=p.getPname() %> </a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price">
-									<span class="money"><%=p.getPprice() %></span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<%} %>
-				
+				<%
+				List<Product> list = ProductDao.getProductBySid(s.getId());
+				%>
+				<table>
+					<tr>
+						<th>Image</th>
+						<th>Product name</th>
+						<th>Product Price</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+					<%for(Product p:list){ %>
+					<tr>
+						<td><img alt="" src="image/<%=p.getImage()%>" height="200px" width="200px"></td>
+						<td><%=p.getPname() %></td>
+						<td><%=p.getPprice() %></td>
+						<td><a href="seller-edit-product.jsp?id=<%=p.getPid()%>">Edit</a></td>
+						<td><a href="seller-delete-product.jsp">Delete</a></td>
+					</tr>
+			<%} %>
+			
+				</table>
 			</div>
 
 		</div>

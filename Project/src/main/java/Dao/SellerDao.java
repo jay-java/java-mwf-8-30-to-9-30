@@ -1,18 +1,40 @@
 package Dao;
 
-import java.security.spec.RSAKeyGenParameterSpec;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
-
 import Model.Seller;
 import connection.DBConnection;
 
 public class SellerDao {
+	public static Seller checkContactAndEmail(long contact,String email) {
+		System.out.println(contact+email+" in dao");
+		Seller s = null;
+		try {
+			Connection connection = DBConnection.createConnection();
+			String sqlString="select * from seller where contact=? and email=?";
+			PreparedStatement pst = connection.prepareStatement(sqlString);
+			pst.setLong(1, contact);
+			pst.setString(2, email);
+			ResultSet rs= pst.executeQuery();
+			if(rs.next()) {
+				s = new Seller();
+				s.setId(rs.getInt("id"));
+				System.out.println("id = "+rs.getInt("id"));
+				s.setName(rs.getString("name"));
+				s.setContact(rs.getLong("contact"));
+				s.setAddress(rs.getString("address"));
+				s.setEmail(rs.getString("email"));
+				s.setPassword(rs.getString("password"));
+				System.out.println("got data "+s);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return s;
+	}
 	public static void insertSeller(Seller s) {
 		try {
 			Connection connection = DBConnection.createConnection();

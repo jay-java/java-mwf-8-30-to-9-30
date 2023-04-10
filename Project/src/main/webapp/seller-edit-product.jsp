@@ -1,3 +1,6 @@
+<%@page import="Dao.ProductDao"%>
+<%@page import="Model.Product"%>
+<%@page import="Model.Seller"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!--
@@ -28,6 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	}
 </script>
 <!-- //Meta tag Keywords -->
+
 <!-- Custom-Files -->
 <link rel="stylesheet" href="css/bootstrap.css">
 <!-- Bootstrap-Core-CSS -->
@@ -46,7 +50,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- //Fonts -->
 
 </head>
+
 <body>
+<%
+Seller s = null;
+if(session.getAttribute("data")!=null){
+	s = (Seller)session.getAttribute("data");
+}
+else{
+	response.sendRedirect("seller-login.jsp");
+}
+
+%>
 	<!-- mian-content -->
 	<div class="main-banner" id="home">
 		<!-- header -->
@@ -60,31 +75,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								aria-hidden="true"></span>ootie</a>
 						</h1>
 					</div>
+
 					<label for="drop" class="toggle">Menu</label> <input
 						type="checkbox" id="drop" />
 					<ul class="menu mt-2">
-						<li class="active"><a href="index.jsp">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="blog.html">Blog</a></li>
+						<li class="active"><a href="seller-home.jsp">Home</a></li>
 						<li>
 							<!-- First Tier Drop Down --> <label for="drop-2" class="toggle">Drop
 								Down <span class="fa fa-angle-down" aria-hidden="true"></span>
-						</label> <a href="#">Register <span class="fa fa-angle-down"
+						</label> <a href="#">Products <span class="fa fa-angle-down"
 								aria-hidden="true"></span></a> <input type="checkbox" id="drop-2" />
 							<ul>
-								<li><a href="seller-registration.jsp">As Seller</a></li>
-								<li><a href="customer-registration.jsp">As Customer</a></li>
+								<li><a href="seller-upload-product.jsp">Upload Product</a></li>
+								<li><a href="seller-manage-product.jsp">Manage Product</a></li>
 							</ul>
 						</li>
 						<li>
 							<!-- First Tier Drop Down --> <label for="drop-2" class="toggle">Drop
 								Down <span class="fa fa-angle-down" aria-hidden="true"></span>
-						</label> <a href="#">Login <span class="fa fa-angle-down"
+						</label> <a href="#"><%=s.getName() %> <span class="fa fa-angle-down"
 								aria-hidden="true"></span></a> <input type="checkbox" id="drop-2" />
 							<ul>
-								<li><a href="seller-login.jsp">As Seller</a></li>
-								<li><a href="customer-login.jsp">As Customer</a></li>
-								<li><a href="admin-login.jsp">As Admin</a></li>
+								<li><a href="seller-profile.jsp">Profile</a></li>
+								<li><a href="seller-change-password.jsp">Change Password</a></li>
+								<li><a href="seller-logout.jsp">Logout</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -103,8 +117,42 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		</div>
 		<!--// banner-inner -->
+
 	</div>
 	<!--//main-content-->
+	
+	
+	<%int id = Integer.parseInt(request.getParameter("id")); %>
+	<%Product p = ProductDao.getProductByPid(id); %>
+	  <section class="ab-info-main py-5">
+		<div class="container py-3">
+			<h3 class="tittle text-center">
+				<span class="sub-tittle">Find Us</span> Seller Manage Product
+			</h3>
+			<div class="row contact-main-info mt-5">
+				<div class="col-md-12 contact-right-content">
+					<form action="ProductController" method="post" enctype="multipart/form-data">
+						<img src="image/<%=p.getImage()%>" alt="">
+						<input type="hidden" name="sid" value="<%=s.getId()%>">
+						<input type="file" name="image" placeholder="Name">
+						<input type="text" name="pname" value="<%=p.getPname()%>">
+						<input type="text" name="pprice"value="<%=p.getPprice()%>">
+						<input type="text" class="email" name="pcategory" value="<%=p.getPcategory()%>"> 
+						<input type="text" class="email" name="pdesc" value="<%=p.getPdesc()%>">
+						<div class="text-center">
+							<input type="submit" name="action" value="update">
+						</div>
+					</form>
+				</div>
+	
+
+			</div>
+		</div>
+	</section>
+	
+	
+	
+	
 	<!--/ab -->
 	<section class="about py-md-5 py-5">
 		<div class="container-fluid">
@@ -159,295 +207,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 	</section>
 	<!-- //ab -->
-	<!--/ab -->
-	<section class="about py-5">
-		<div class="container pb-lg-3">
-			<h3 class="tittle text-center">New Arrivals</h3>
-			<div class="row">
-				<div class="col-md-4 product-men">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="images/s1.jpg" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="shop-single.html">Bella Toes </a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price">
-									<span class="money">$675.00</span>
-								</div>
-							</div>
-							<ul class="stars">
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-o"
-										aria-hidden="true"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 product-men">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="images/s2.jpg" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="shop-single.html">Chikku Loafers </a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price">
-									<span class="money">$475.00</span>
-								</div>
-							</div>
-							<ul class="stars">
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-o"
-										aria-hidden="true"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 product-men">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="images/s3.jpg" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="shop-single.html">(SRV) Sneakers </a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price">
-									<span class="money">$575.00</span>
-								</div>
-							</div>
-							<ul class="stars">
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-o"
-										aria-hidden="true"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 product-men my-lg-4">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="images/s4.jpg" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="shop-single.html">Shuberry Heels</a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price">
-									<span class="money">$575.00</span>
-								</div>
-							</div>
-							<ul class="stars">
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-o"
-										aria-hidden="true"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 product-men my-lg-4">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="images/s5.jpg" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="shop-single.html">Red Bellies </a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price">
-									<span class="money">$575.00</span>
-								</div>
-							</div>
-							<ul class="stars">
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-o"
-										aria-hidden="true"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 product-men my-lg-4">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="images/s6.jpg" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="shop-single.html">Catwalk Flats </a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price">
-									<span class="money">$575.00</span>
-								</div>
-							</div>
-							<ul class="stars">
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-o"
-										aria-hidden="true"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 product-men">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="images/s7.jpg" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="shop-single.html">Running Shoes </a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price">
-									<span class="money">$675.00</span>
-								</div>
-							</div>
-							<ul class="stars">
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-o"
-										aria-hidden="true"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 product-men">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="images/s8.jpg" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="shop-single.html">Sukun Casuals </a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price ">
-									<span class="money ">$775.00</span>
-								</div>
-							</div>
-							<ul class="stars">
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-o"
-										aria-hidden="true"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 product-men">
-					<div class="product-shoe-info shoe text-center">
-						<div class="men-thumb-item">
-							<img src="images/s9.jpg" class="img-fluid" alt=""> <span
-								class="product-new-top">New</span>
-						</div>
-						<div class="item-info-product">
-							<h4>
-								<a href="shop-single.html">Bank Sneakers</a>
-							</h4>
-
-							<div class="product_price">
-								<div class="grid-price">
-									<span class="money">$875.00</span>
-								</div>
-							</div>
-							<ul class="stars">
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-half-o"
-										aria-hidden="true"></span></a></li>
-								<li><a href="#"><span class="fa fa-star-o"
-										aria-hidden="true"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</section>
-	<!-- //ab -->
+	
+	
+	
 	<!--/testimonials-->
 	<section class="testimonials py-5">
 		<div class="container">

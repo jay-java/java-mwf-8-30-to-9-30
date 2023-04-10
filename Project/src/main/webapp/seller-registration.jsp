@@ -115,6 +115,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</h3>
 			<div class="row contact-main-info mt-5">
 				<div class="col-md-12 contact-right-content">
+				<%String msg = (String)request.getAttribute("msg"); %>
+				<%if(msg!=null){ %>
+					<h3><%out.print(msg); %></h3>
+				<%} %>
 					<form action="SellerController" method="post">
 						<input type="text" name="name" placeholder="Name" required="">
 						<input type="text" name="contact" placeholder="Contact" required="">

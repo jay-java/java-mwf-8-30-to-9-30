@@ -1,0 +1,77 @@
+Hibernate : Hibernate is a java framework that simplifies the development of 
+	    java application to iteract with the database.
+	   -ORM tool(Object relational mapping)
+iBatis(ORM)
+open source,lightweight
+non-invasive(doesnt force programmer to extends/implement class/interface)
+invented by GAVIN KING in 2001
+class Student------Table name 
+id ------------field name column
+name-------name
+address-------address
+
+hibernate.cfg.xml(DB Connection)
+
+SessionFactory -interface 
+Configuration-class
+buildSessinFactory();
+
+
+Annotation:
+1.@Entity->javax.persistance(class which works with table in DB)
+2.@Table(name="student_data")
+	class Student{
+		private int id;
+		@Column(name="student_name")
+		private String name;
+		@Transient
+		private String address;
+	}
+3.@Id(field ->primary key)
+4.@GeneratedValue(strategy = StrategyType.AUTO)->auto increament id
+5.@Column->to rename column name into table
+6.@Transient-> we tells hibernate that do not save that field
+7.@Lob->large Object(huge amount of data)
+8.@Temporal->date foramtion-24/09/2021-dd/mm/yyyy(mm/dd/yyyy-yyyy/dd/mm)
+
+insert->session.save(s1);
+getDataById->get/load(s1.fieldname)
+update->session.update(s1)
+delete->session.delete(s1)
+
+Get->select * from table_name (executes query single time)Eager loading
+	select * from table_name where id=?
+load->select * from table_name ------>Lazy loading
+	select * from table_name where id=?
+
+Mapping
+1.One to one
+2.one to many
+3.many to one
+4.many to many
+
+
+Hibernate/Persistant lifecycle states:
+Class ->Object->hibernate->DB
+Object States |   DB   |  Session
+1.Transient   |  false | false
+2.Persistent  |  True  | true
+3.Detached    |  true  | false
+4.Removed     |  false | true
+
+
+HQL-hibernate query language
+Sql - 
+SQL->select * from table_name(table name in a DB);
+HQl->from Student(Entity ->Class name)
+
+
+Pagintaion -> 100 data in table
+		in one page only 10 data to be shown
+		
+Caching in hibernate:->reduce the number of database queries.
+
+1.first level->associated with session object
+2.second level->associated with sessionfactory object
+
+
