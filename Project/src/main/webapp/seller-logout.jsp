@@ -7,16 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <%
-  response.setHeader("Cache-Control","no-cache");
-  response.setHeader("Cache-Control","no-store");
-  response.setHeader("Pragma","no-cache");
-  response.setDateHeader ("Expires", 0);
 
-  if(session.getAttribute("data")==null)
-      response.sendRedirect("index.jsp");
-
-  %> 
 
 <%
 session.removeAttribute("data");

@@ -9,7 +9,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
 <title>Bootie Ecommerce Bootstrap Responsive Web Template | Home
 	:: W3layouts</title>
