@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 
 public class App {
 	public static void main(String[] args) {
-		SessionFactory sf = new Configuration().configure("com/hibernate/hibernate.cfg.xml").buildSessionFactory();
+		SessionFactory sf = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = sf.openSession();
 		Transaction tx = session.beginTransaction();
 
