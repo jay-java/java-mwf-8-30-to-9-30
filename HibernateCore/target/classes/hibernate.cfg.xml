@@ -15,5 +15,7 @@
 		<mapping class="OneToOne.Answer" />
 		<mapping class="OneToMany.Seller" />
 		<mapping class="OneToMany.Product" />
+		<mapping class="ManyToMany.Student" />
+		<mapping class="ManyToMany.Teacher" />
 	</session-factory>
 </hibernate-configuration>
