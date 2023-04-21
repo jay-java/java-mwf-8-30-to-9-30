@@ -10,6 +10,10 @@ public class User {
 	private String name;
 	private double value;
 	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public User(int id, String name, double value) {
 		super();
 		this.id = id;

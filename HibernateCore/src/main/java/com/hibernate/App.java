@@ -12,8 +12,9 @@ public class App {
 		Transaction tx = session.beginTransaction();
 
 		User u = new User(3, "c++", 346.345);
-		session.delete(u);
-
+		session.save(u);
+//		User u = session.get(User.class, 2);
+//		System.out.println(u);
 		tx.commit();
 		session.close();
 		sf.close();

@@ -6,6 +6,9 @@ abstract class RBI{
 	public static void repoRate() {
 		System.out.println("repo rate : +-4%");
 	}
+	public void run() {
+		
+	}
 }
 class SBI extends RBI{
 
