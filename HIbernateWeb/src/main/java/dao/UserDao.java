@@ -60,6 +60,7 @@ public class UserDao {
 		tx = session.beginTransaction();
 		Query q = session.createQuery("delete from User u where u.id=:id");
 		q.setParameter("id", id);
+		
 		tx.commit();
 		session.close();
 	}

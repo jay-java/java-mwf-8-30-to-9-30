@@ -1,0 +1,27 @@
+spring core steps:
+1.create project
+2.add depenedency->core,context
+3.create beans-java POJO
+4.create configuration file->config.xml
+5.setter injection
+6.main class : can pull object and use
+
+xml-schema
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+</beans>
+
+
+core - Jars
+spring-core
+spring-jcl
+spring-context
+spring-aop
+spring-beans
+spring-expression

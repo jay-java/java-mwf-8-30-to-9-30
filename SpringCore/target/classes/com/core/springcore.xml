@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">	
+</beans> -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+        <bean class="com.core.User" name="u1">
+        	<property name="id">
+        		<value>1</value>
+        	</property> 
+        	<property name="name">
+        		<value>java</value>
+        	</property>
+        	<property name="contact">
+        		<value>9876543210</value>
+        	</property>
+        </bean> 
+        
+        <bean class="com.core.User" name="u2">
+        	<property name="id" value="2"/>
+        	<property name="name" value="python"/>
+        </bean> 
+
+   
+</beans>
+

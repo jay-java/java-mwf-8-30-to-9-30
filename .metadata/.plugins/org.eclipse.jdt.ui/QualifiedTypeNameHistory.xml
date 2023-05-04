@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.Enum"/>
-    <fullyQualifiedTypeName name="java.security.spec.RSAKeyGenParameterSpec"/>
     <fullyQualifiedTypeName name="Controller.SellerController"/>
     <fullyQualifiedTypeName name="org.apache.tomcat.util.scan.AbstractInputStreamJar"/>
     <fullyQualifiedTypeName name="java.lang.InternalError"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="dao.UserDao"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
+    <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
 </qualifiedTypeNameHistroy>
