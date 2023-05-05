@@ -12,7 +12,7 @@ public class SetDemo {
 		set.add(false);
 		set.add('g');
 		set.add(4544.4);
-		set.add(1);
+		set.add(null);
 		System.out.println(set);
 		Iterator itrIterator = set.iterator();
 		while(itrIterator.hasNext()) {
