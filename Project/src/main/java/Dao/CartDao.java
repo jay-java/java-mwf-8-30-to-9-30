@@ -79,6 +79,30 @@ public class CartDao {
 		}
 		return c;
 	}
+	public static Cart getCartByCusiddd(int cid) {
+		Cart c = null;
+		try {
+			Connection conn = DBConnection.createConnection();
+			String sql = "select * from cart where cusid=?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setInt(1, cid);
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				c = new Cart();
+				c.setCid(rs.getInt("cid"));
+				c.setCusid(rs.getInt("cusid"));
+				c.setPid(rs.getInt("pid"));
+				c.setPname(rs.getString("pname"));
+				c.setPprice(rs.getInt("pprice"));
+				c.setPqty(rs.getInt("pqty"));
+				c.setPayment_status(rs.getString("payment_status"));
+				c.setTotal(rs.getInt("total"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
 	public static void updateCart(Cart c) {
 		try {
 			Connection conn = DBConnection.createConnection();
@@ -89,6 +113,18 @@ public class CartDao {
 			pst.setInt(3, c.getCid());
 			pst.executeUpdate();
 			System.out.println("cart updated");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static void updateStatus(int id) {
+		try {
+			Connection conn = DBConnection.createConnection();
+			String sql = "update cart set payment_status='successful' where cid=?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setInt(1, id);
+			pst.executeUpdate();
+			System.out.println("status updated");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -153,7 +153,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			
 		</tbody>
 	</table>
-		<form method="post" action="payment.jsp?amount=<%=net_price%>">
+		<form method="post" action="payment.jsp?amount=<%=net_price%>&cid=<%=c.getId()%>">
 		<table border="1">
 			<tbody>
 				<tr>

@@ -1,3 +1,5 @@
+<%@page import="Dao.CartDao"%>
+<%@page import="Model.Cart"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -20,7 +22,8 @@
 	{
 		/*  alert("1");  */
 		var number=document.getElementById("amount").value;
-		xhttp.open("GET","http://localhost:8080/Project/OrderCreation?amount="+number,false);
+		var cid=document.getElementById("cid").value;
+		xhttp.open("GET","http://localhost:8080/Project/OrderCreation?amount="+number+"&id="+cid,false);
 		/* alert("2"); */
 		xhttp.send();
 		RazorpayOrderId=xhttp.responseText;
@@ -38,7 +41,7 @@
 		var number=document.getElementById("amount").value;
 		/* alert(number); */
 		var options={
-				"key":"rzp_test_dCZN3cHQfbgMDS",
+				"key":"rzp_test_pOWy53Q2rB4YDf",
 				"amount":number,
 				"currency":"INR",
 				"name":"Dhruv",	
@@ -47,12 +50,12 @@
 				
 				"callback_url":"http://localhost:8080/Project/customer-home.jsp",
 				"prefill":{
-					"name":"Dhruv Virani",
-					"email":"viranidhruv002@gmail.com",
-					"contact":"7046970488"
+					"name":"Jay Prajapati",
+					"email":"jay.arch007@gmail.com",
+					"contact":"9662261373"
 				},
 				"notes":{
-					"address":"Amreli"
+					"address":"Ahmedabad"
 				},
 				"theme":{
 					"color":"#3399cc"
@@ -76,12 +79,19 @@
 </script>
 </head>
 <body>
+
 <div id="order_id">
 	
 </div>
 <%int am = Integer.parseInt(request.getParameter("amount")); %>
+<%int cid = Integer.parseInt(request.getParameter("cid")); %>
+<%out.print(cid); %>
+<%Cart c = CartDao.getCartByCusiddd(cid); %>
+<%out.print(c); %>
+<%int id = c.getCid(); %> 
 <center> 
 	<input type="hidden" id="amount" value="<%=am%>">
+	 <input type="hidden" id="cid" value="<%=id%>"> 
 	<button id="payButton" onclick="CreateOrderID()" class="bttnStyle">Pay Now</button>
 </center>
 </body>

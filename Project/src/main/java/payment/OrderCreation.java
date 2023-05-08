@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.*;
 import com.razorpay.*;
+
+import Dao.CartDao;
 /**
  * Servlet implementation class OrderCreation
  */
@@ -31,11 +33,11 @@ public class OrderCreation extends HttpServlet {
 		RazorpayClient client=null;
 		String orderId=null;
 		try {
-			client=new RazorpayClient("rzp_test_dCZN3cHQfbgMDS","MV1Y3STtsbMIIHM1uIQ6WB60");
+			client=new RazorpayClient("rzp_test_pOWy53Q2rB4YDf","ip9U55Ezpuuu72iqWk0rlAUk");
 			
 			String amount=request.getParameter("amount");
 			Integer digit=new Integer(Integer.parseInt(amount)*100);
-			
+			int id = Integer.parseInt(request.getParameter("id"));
 			JSONObject options=new JSONObject();
 			options.put("amount", digit.toString());
 			options.put("currency", "INR");
@@ -43,6 +45,8 @@ public class OrderCreation extends HttpServlet {
 			options.put("payment_capture", true);
 			Order order=client.Orders.create(options);
 			orderId=order.get("id");
+			
+			CartDao.updateStatus(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -56,7 +60,7 @@ public class OrderCreation extends HttpServlet {
 		System.out.println("post called");
 		RazorpayClient client=null;
 		try {
-			client=new RazorpayClient("rzp_test_dCZN3cHQfbgMDS","MV1Y3STtsbMIIHM1uIQ6WB60");
+			client=new RazorpayClient("rzp_test_pOWy53Q2rB4YDf","ip9U55Ezpuuu72iqWk0rlAUk");
 			JSONObject options=new JSONObject();
 			options.put("razorpay_payment_id",request.getParameter("razorpay_payment_id"));
 			options.put("razorpay_order_id",request.getParameter("razorpay_order_id"));
