@@ -20,19 +20,19 @@
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-core</artifactId>
-    <version>6.0.8</version>
+    <version>5.3.22</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-context</artifactId>
-    <version>6.0.8</version>
+    <version>5.3.22</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-orm</artifactId>
-    <version>6.0.8</version>
+    <version>5.3.22</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 <dependency>

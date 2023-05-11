@@ -3,9 +3,7 @@ package com.orm;
 import java.util.List;
 
 import javax.transaction.Transactional;
-
 import org.springframework.orm.hibernate5.HibernateTemplate;
-
 
 public class UserDao {
 	private HibernateTemplate hibernateTemplate;
