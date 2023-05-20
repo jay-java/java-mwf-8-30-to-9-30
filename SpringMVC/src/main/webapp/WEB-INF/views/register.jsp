@@ -18,15 +18,15 @@
 				<td><input type="text" name="contact"></td>
 			</tr>
 			<tr>
-				<td>Name :</td>
+				<td>Address :</td>
 				<td><input type="text" name="address"></td>
 			</tr>
 			<tr>
-				<td>Name :</td>
+				<td>Email :</td>
 				<td><input type="text" name="email"></td>
 			</tr>
 			<tr>
-				<td>Name :</td>
+				<td>Password :</td>
 				<td><input type="text" name="password"></td>
 			</tr>
 			<tr>
