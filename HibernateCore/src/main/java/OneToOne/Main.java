@@ -34,10 +34,14 @@ public class Main {
 		a1.setQuestion(q2);
 		a2.setQuestion(q1);
 		
-		session.save(q1);
-		session.save(q2);
-		session.save(a1);
-		session.save(a2);
+//		session.save(q1);
+//		session.save(q2);
+//		session.save(a1);
+//		session.save(a2);
+		
+		session.update(a2);
+		session.get(Question.class, 1);
+		session.delete(a1);
 		
 		tx.commit();
 		session.close();

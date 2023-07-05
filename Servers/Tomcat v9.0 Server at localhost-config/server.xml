@@ -152,7 +152,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="AdvanceJAVA" path="/AdvanceJAVA" reloadable="true" source="org.eclipse.jst.jee.server:AdvanceJAVA"/><Context docBase="Project" path="/Project" reloadable="true" source="org.eclipse.jst.jee.server:Project"/><Context docBase="HIbernateWeb" path="/HIbernateWeb" reloadable="true" source="org.eclipse.jst.jee.server:HIbernateWeb"/><Context docBase="SpringMVC" path="/SpringMVC" reloadable="true" source="org.eclipse.jst.j2ee.server:SpringMVC"/><Context docBase="CRUD" path="/CRUD" reloadable="true" source="org.eclipse.jst.jee.server:CRUD"/></Host>
+      <Context docBase="AdvanceJAVA" path="/AdvanceJAVA" reloadable="true" source="org.eclipse.jst.jee.server:AdvanceJAVA"/><Context docBase="Project" path="/Project" reloadable="true" source="org.eclipse.jst.jee.server:Project"/><Context docBase="HIbernateWeb" path="/HIbernateWeb" reloadable="true" source="org.eclipse.jst.jee.server:HIbernateWeb"/><Context docBase="SpringMVC" path="/SpringMVC" reloadable="true" source="org.eclipse.jst.j2ee.server:SpringMVC"/><Context docBase="CRUD" path="/CRUD" reloadable="true" source="org.eclipse.jst.jee.server:CRUD"/><Context docBase="SpringMVCNEW" path="/SpringMVCNEW" reloadable="true" source="org.eclipse.jst.j2ee.server:SpringMVCNEW"/><Context docBase="SpringORMMVCWeb" path="/SpringORMMVCWeb" reloadable="true" source="org.eclipse.jst.jee.server:SpringORMMVCWeb"/></Host>
     </Engine>
   </Service>
 </Server>
