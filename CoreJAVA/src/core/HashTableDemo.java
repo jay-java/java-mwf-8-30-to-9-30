@@ -12,8 +12,8 @@ public class HashTableDemo {
 		Map map = new Hashtable();
 		map.put(1, "c"); //entry
 		map.put("java", "java");
-		map.put(3, "c++");
-		map.put(3, "python");
+		map.put(null, "c++");
+//		map.put(null, "python");
 		System.out.println(map);
 		Set set = map.entrySet();
 		Iterator itrIterator = set.iterator();

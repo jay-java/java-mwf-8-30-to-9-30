@@ -1,7 +1,7 @@
 package constructorInjection;
 
 public class User {
-	private int a,b;
+	private int a, b;
 
 	public User() {
 		super();
@@ -14,6 +14,7 @@ public class User {
 		this.a = a;
 		this.b = b;
 	}
+
 	public User(String a, String b) {
 		super();
 		System.out.println("String cons");
@@ -25,9 +26,7 @@ public class User {
 	public String toString() {
 		return "User [a=" + a + ", b=" + b + "]";
 	}
-	
-	
-	
+
 //	private int id;
 //	private String name;
 //	private double per;
@@ -54,5 +53,5 @@ public class User {
 //	public String toString() {
 //		return "User [id=" + id + ", name=" + name + ", per=" + per + "]";
 //	}
-	
+
 }

@@ -9,7 +9,7 @@ public class TreeSetDemo {
 	public static void main(String[] args) {
 		Set set = new TreeSet();
 		set.add(-211);
-		set.add(22);
+		set.add(25);
 		set.add(-36);
 		set.add(0);
 		set.add(56845);

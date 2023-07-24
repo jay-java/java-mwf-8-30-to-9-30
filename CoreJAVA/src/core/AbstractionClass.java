@@ -7,7 +7,7 @@ abstract class RBI{
 		System.out.println("repo rate : +-4%");
 	}
 	public void run() {
-		
+		System.out.println("run calling");
 	}
 }
 class SBI extends RBI{
@@ -60,6 +60,7 @@ public class AbstractionClass {
 		sbi.interest();
 		sbi.homeloan();
 		sbi.repoRate();
+		sbi.run();
 		SBI.repoRate();
 		PNB pnb = new PNB();
 		pnb.interest();

@@ -13,11 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import com.mysql.cj.protocol.PacketSentTimeHolder;
-import com.mysql.cj.protocol.a.result.ResultsetRowsStatic;
-import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
-import com.mysql.cj.x.protobuf.MysqlxCrud.Update;
-
 public class SwingDemo implements ActionListener {
 	JLabel l1, l2, l3, l4, l5;
 	JTextField t1, t2, t3, t4, t5;
